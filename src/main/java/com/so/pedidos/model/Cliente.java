@@ -1,89 +1,105 @@
 package com.so.pedidos.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "cliente")
 public class Cliente {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer id;
-  private String Nombre_usuario;
-  private String password;
-  private String nombreCompleto;
-  private Integer telefono;
-  private String Correo_electronico;
-  private String NIT;
 
-  public Cliente(String Nombre_usuario, String password, String nombreCompleto, Integer telefono, String Correo_electronico,
-      String NIT) {
-    this.Nombre_usuario = Nombre_usuario;
-    this.password = password;
-    this.nombreCompleto = nombreCompleto;
-    this.telefono = telefono;
-    this.Correo_electronico = Correo_electronico;
-    this.NIT = NIT;
-  }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idCliente")
+    private Integer idCliente;
 
-  public Integer getId() {
-    return id;
-  }
+    @Column(name = "Nombre_usuario")
+    private String nombreUsuario;
 
-  public void setId(Integer id) {
-    this.id = id;
-  }
+    @Column(name = "Password")
+    private String password;
 
-  public String getNombre_usuario() {
-    return Nombre_usuario;
-  }
+    @Column(name = "NombreCompleto")
+    private String nombreCompleto;
 
-  public void setNombre_usuario(String nombre_usuario) {
-    this.Nombre_usuario = nombre_usuario;
-  }
+    @Column(name = "Telefono")
+    private Integer telefono;
 
-  public String getPassword() {
-    return password;
-  }
+    @Column(name = "Correo_electronico")
+    private String correoElectronico;
 
-  public void setPassword(String password) {
-    this.password = password;
-  }
+    @Column(name = "NIT")
+    private String nit;
 
-  public String getNombreCompleto() {
-    return nombreCompleto;
-  }
+    public Cliente() {
+    }
 
-  public void setNombreCompleto(String nombreCompleto) {
-    this.nombreCompleto = nombreCompleto;
-  }
+    public Cliente(String nombreUsuario, String password, String nombreCompleto,
+                   Integer telefono, String correoElectronico, String nit) {
+        this.nombreUsuario = nombreUsuario;
+        this.password = password;
+        this.nombreCompleto = nombreCompleto;
+        this.telefono = telefono;
+        this.correoElectronico = correoElectronico;
+        this.nit = nit;
+    }
 
-  public Integer getTelefono() {
-    return telefono;
-  }
+    public Integer getIdCliente() {
+        return idCliente;
+    }
 
-  public void setTelefono(Integer telefono) {
-    this.telefono = telefono;
-  }
+    public void setIdCliente(Integer idCliente) {
+        this.idCliente = idCliente;
+    }
 
-  public String getCorreo_electronico() {
-    return Correo_electronico;
-  }
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
 
-  public void setCorreo_electronico(String correo_electronico) {
-    Correo_electronico = correo_electronico;
-  }
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
 
-  public String getNIT() {
-    return NIT;
-  }
+    public String getPassword() {
+        return password;
+    }
 
-  public void setNIT(String nIT) {
-    NIT = nIT;
-  }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-  public Cliente() {
-  }
+    public String getNombreCompleto() {
+        return nombreCompleto;
+    }
 
+    public void setNombreCompleto(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
+    }
+
+    public Integer getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(Integer telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getCorreoElectronico() {
+        return correoElectronico;
+    }
+
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
+    }
+
+    public String getNit() {
+        return nit;
+    }
+
+    public void setNit(String nit) {
+        this.nit = nit;
+    }
 }

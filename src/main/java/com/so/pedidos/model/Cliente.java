@@ -10,16 +10,16 @@ public class Cliente {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
-  private String nombre;
+  private String Nombre_usuario;
   private String password;
   private String nombreCompleto;
   private Integer telefono;
   private String Correo_electronico;
   private String NIT;
 
-  public Cliente(String nombre, String password, String nombreCompleto, Integer telefono, String Correo_electronico,
+  public Cliente(String Nombre_usuario, String password, String nombreCompleto, Integer telefono, String Correo_electronico,
       String NIT) {
-    this.nombre = nombre;
+    this.Nombre_usuario = Nombre_usuario;
     this.password = password;
     this.nombreCompleto = nombreCompleto;
     this.telefono = telefono;
@@ -35,12 +35,12 @@ public class Cliente {
     this.id = id;
   }
 
-  public String getNombre() {
-    return nombre;
+  public String getNombre_usuario() {
+    return Nombre_usuario;
   }
 
-  public void setNombre(String nombre) {
-    this.nombre = nombre;
+  public void setNombre_usuario(String nombre_usuario) {
+    this.Nombre_usuario = nombre_usuario;
   }
 
   public String getPassword() {

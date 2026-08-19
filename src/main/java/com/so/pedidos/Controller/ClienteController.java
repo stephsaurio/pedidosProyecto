@@ -32,6 +32,13 @@ public class ClienteController {
     public Cliente guardarCliente(@RequestBody Cliente cliente) {
         return clienteService.guardarCliente(cliente);
     }
+    @PostMapping("/login")
+public Cliente iniciarSesion(@RequestBody Cliente cliente) {
+    return clienteService.iniciarSesion(
+        cliente.getCorreoElectronico(),
+        cliente.getPassword()
+    );
+}
 
     @GetMapping("/{id}")
     public Cliente buscarCliente(@PathVariable Integer id) {

@@ -15,4 +15,11 @@ export class ClienteService {
   registrar(cliente: any): Observable<any> {
     return this.http.post(this.apiUrl, cliente);
   }
+
+  login(datosLogin: any): Observable<any> {
+    return this.http.post(
+      this.apiUrl + '/login',
+      datosLogin
+    );
+  }
 }

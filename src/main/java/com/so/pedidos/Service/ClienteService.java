@@ -23,6 +23,18 @@ public class ClienteService {
         return clienteRepository.save(cliente);
     }
 
+  public Cliente iniciarSesion(String correo, String password) {
+
+    Cliente cliente = clienteRepository
+            .findByCorreoElectronicoAndPassword(correo, password);
+
+    if (cliente == null) {
+        throw new RuntimeException("Correo o contraseña incorrectos");
+    }
+
+    return cliente;
+}
+
     public Cliente buscarCliente(Integer id) {
         return clienteRepository.findById(id).orElse(null);
     }

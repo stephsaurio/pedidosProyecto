@@ -1,0 +1,47 @@
+
+<div class="pagina">
+
+  <mat-toolbar>
+
+      <button matMiniFab disabled aria-label="Example icon button with a home icon">
+        <mat-icon>home</mat-icon>
+      </button>
+
+    <span>Catálogo De Productos</span>
+
+    <span class="example-spacer"></span>
+
+    <a mat-button>Carrito</a>
+    <a mat-button>Bandeja de Entrada</a>
+
+  </mat-toolbar>
+
+
+
+  <div class="catalogo">
+
+    @for (producto of productos; track producto.idproducto) {
+
+      <div class="producto">
+
+        <h2>{{ producto.nombreProducto }}</h2>
+
+        <p>{{ producto.descripcion }}</p>
+
+        <p>Precio: Q.{{ producto.precio }}</p>
+
+        <button
+          matIconButton
+          class="favorite-icon"
+          aria-label="Agregar a favoritos"
+        >
+          <mat-icon>favorite</mat-icon>
+        </button>
+
+      </div>
+
+    }
+
+  </div>
+
+</div>

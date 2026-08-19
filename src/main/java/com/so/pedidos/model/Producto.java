@@ -29,9 +29,9 @@ public class Producto {
     @Column(name = "Precio")
     private double precio;
 
-    @ManyToOne
-    @JoinColumn(name = "idLote", nullable = false)
-    private Lote lote;
+@ManyToOne
+@JoinColumn(name = "Lote_idLote", nullable = false)
+private Lote lote;
 
 
     public Producto(String nombreProducto, String descripcion, double precio, Lote lote){
@@ -40,7 +40,8 @@ public class Producto {
         this.precio = precio;
         this.lote = lote;
     }
-
+public Producto() {
+}
 
     public int getIdproducto() {
         return idproducto;

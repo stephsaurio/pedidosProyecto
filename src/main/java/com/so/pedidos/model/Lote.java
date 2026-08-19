@@ -40,6 +40,8 @@ public class Lote {
         this.stock = stock;
         this.talla = talla;
     }
+    public Lote() {
+}
 
     public int getIdlote() {
         return idlote;

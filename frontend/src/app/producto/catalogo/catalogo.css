@@ -1,0 +1,44 @@
+.pagina {
+  min-height: 100vh;
+  background-color: #ffffff;
+}
+
+h1 {
+  padding: 20px;
+  margin: 0;
+}
+
+.catalogo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+.producto {
+  box-sizing: border-box;
+  width: 273px;
+  padding: 20px;
+  border: 2px solid black;
+  background-color: rgb(175, 248, 106);
+  border-radius: 20px;
+}
+
+.producto h2 {
+  margin-top: 0;
+}
+
+.producto p {
+  margin: 5px 0;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.favorite-icon {
+  cursor: pointer;
+}
+
+
+

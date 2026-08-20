@@ -101,7 +101,7 @@ CREATE TABLE `producto` (
 DROP TABLE IF EXISTS `detalle_pedido`;
 
 CREATE TABLE `detalle_pedido` (
-  `idDetalle_factura` int NOT NULL AUTO_INCREMENT,
+  `idDetalle` int NOT NULL AUTO_INCREMENT,
   `Precio_unitario` double NOT NULL,
   `Cantidad` int NOT NULL,
   `Sub_total` double NOT NULL,

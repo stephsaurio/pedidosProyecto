@@ -1,13 +1,20 @@
 package com.so.pedidos.model;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "pedido" })
 @Table(name = "cliente")
 public class Cliente {
 
@@ -34,11 +41,14 @@ public class Cliente {
     @Column(name = "NIT")
     private String nit;
 
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Pedido> pedido;
+
     public Cliente() {
     }
 
     public Cliente(String nombreUsuario, String password, String nombreCompleto,
-                   Integer telefono, String correoElectronico, String nit) {
+            Integer telefono, String correoElectronico, String nit) {
         this.nombreUsuario = nombreUsuario;
         this.password = password;
         this.nombreCompleto = nombreCompleto;
@@ -73,6 +83,14 @@ public class Cliente {
 
     public String getNombreCompleto() {
         return nombreCompleto;
+    }
+
+    public List<Pedido> getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(List<Pedido> pedido) {
+        this.pedido = pedido;
     }
 
     public void setNombreCompleto(String nombreCompleto) {

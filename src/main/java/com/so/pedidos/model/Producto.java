@@ -2,16 +2,23 @@ package com.so.pedidos.model;
 
 
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "detallePedido" })
 @Table(name = "producto")
 public class Producto {
 
@@ -29,6 +36,9 @@ public class Producto {
     @Column(name = "Precio")
     private double precio;
 
+        @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Detalle_pedido> detallePedido;
+
 @ManyToOne
 @JoinColumn(name = "Lote_idLote", nullable = false)
 private Lote lote;
@@ -40,8 +50,6 @@ private Lote lote;
         this.precio = precio;
         this.lote = lote;
     }
-public Producto() {
-}
 
     public int getIdproducto() {
         return idproducto;
@@ -90,6 +98,14 @@ public Producto() {
 
     public void setLote(Lote lote) {
         this.lote = lote;
+    }
+
+    public List<Detalle_pedido> getDetallePedido() {
+        return detallePedido;
+    }
+
+    public void setDetallePedido(List<Detalle_pedido> detallePedido) {
+        this.detallePedido = detallePedido;
     }
 
 }

@@ -1,0 +1,50 @@
+<div class="admin-page">
+    <nav class="admin-nav">
+  <a routerLink="/admin/productos" routerLinkActive="active">Productos</a>
+  <a routerLink="/admin/lotes" routerLinkActive="active">Lotes</a>
+    </nav>
+
+  <h1>Gestión de lotes</h1>
+
+  <form (ngSubmit)="guardar()">
+    <div class="field">
+      <label for="estilo">Estilo</label>
+      <input id="estilo" type="text" [(ngModel)]="loteForms.estilo" name="estilo" required>
+    </div>
+
+    <div class="field">
+      <label for="stock">Stock</label>
+      <input id="stock" type="number" [(ngModel)]="loteForms.stock" name="stock" required>
+    </div>
+
+    <div class="field">
+      <label for="talla">Talla</label>
+      <input id="talla" type="number" [(ngModel)]="loteForms.talla" name="talla" required>
+    </div>
+
+    <button type="submit">{{ editando ? 'Actualizar' : 'Crear' }}</button>
+    <button type="button" *ngIf="editando" (click)="cancelar()">Cancelar</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Estilo</th>
+        <th>Stock</th>
+        <th>Talla</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let lote of lotes">
+        <td>{{ lote.estilo }}</td>
+        <td>{{ lote.stock }}</td>
+        <td>{{ lote.talla }}</td>
+        <td>
+          <button (click)="editar(lote)">Editar</button>
+          <button (click)="eliminar(lote.idlote)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

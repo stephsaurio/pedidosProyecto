@@ -1,0 +1,187 @@
+* {
+  box-sizing: border-box;
+}
+
+:host {
+  display: block;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #111111;
+}
+
+.admin-page {
+  min-height: 100vh;
+  background: #ffffff;
+  padding: 45px;
+}
+
+h1 {
+  margin: 0 0 8px;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.admin-nav {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 35px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.admin-nav a {
+  color: #666666;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-decoration: none;
+  padding-bottom: 6px;
+}
+
+.admin-nav a:hover,
+.admin-nav a.active {
+  color: #111111;
+  border-bottom: 2px solid #c6497b;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 20px;
+  margin-bottom: 40px;
+  padding: 25px;
+  background: #fafafa;
+  border: 1px solid #e8e8e8;
+}
+
+.field {
+  flex: 1 1 180px;
+  margin-bottom: 0;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 9px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  height: 44px;
+  padding: 0 12px;
+  border: 1px solid #cccccc;
+  background: #ffffff;
+  color: #111111;
+  font-size: 14px;
+  outline: none;
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: #c6497b;
+}
+
+form button {
+  width: auto;
+  height: 44px;
+  padding: 0 28px;
+  border: none;
+  background: #111111;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background: #c6497b;
+}
+
+form button[type="button"] {
+  background: #ffffff;
+  color: #111111;
+  border: 1px solid #cccccc;
+}
+
+form button[type="button"]:hover {
+  background: #f2f2f2;
+  color: #111111;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead th {
+  text-align: left;
+  padding: 12px 14px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #666666;
+  border-bottom: 2px solid #111111;
+}
+
+tbody td {
+  padding: 14px;
+  font-size: 14px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+tbody tr:hover {
+  background: #fafafa;
+}
+
+td button {
+  width: auto;
+  height: 32px;
+  padding: 0 14px;
+  margin-right: 8px;
+  font-size: 11px;
+  border: none;
+  cursor: pointer;
+}
+
+td button:first-of-type {
+  background: #111111;
+  color: #ffffff;
+}
+
+td button:first-of-type:hover {
+  background: #c6497b;
+}
+
+td button:last-of-type {
+  background: #ffffff;
+  color: #c6497b;
+  border: 1px solid #c6497b;
+}
+
+td button:last-of-type:hover {
+  background: #c6497b;
+  color: #ffffff;
+}
+
+.auth-error {
+  margin: -10px 0 20px;
+  color: #c6497b;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  .admin-page {
+    padding: 25px 20px;
+  }
+
+  form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

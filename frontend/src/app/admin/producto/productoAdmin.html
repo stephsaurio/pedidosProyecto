@@ -1,0 +1,71 @@
+<div class="admin-page">
+  <nav class="admin-nav">
+  <a routerLink="/admin/productos" routerLinkActive="active">Productos</a>
+  <a routerLink="/admin/lotes" routerLinkActive="active">Lotes</a>
+  </nav>
+
+  <h1>Gestión de productos</h1>
+
+  <form (ngSubmit)="guardar()">
+    <div class="field">
+      <label for="nombre">Nombre</label>
+      <input
+        id="nombre"
+        type="text"
+        [(ngModel)]="productoForms.nombreProducto"
+        name="nombreProducto"
+        required
+      />
+    </div>
+
+    <div class="field">
+      <label for="descripcion">Descripción</label>
+      <input
+        id="descripcion"
+        type="text"
+        [(ngModel)]="productoForms.descripcion"
+        name="descripcion"
+        required
+      />
+    </div>
+
+    <div class="field">
+      <label for="precio">Precio</label>
+      <input id="precio" type="number" [(ngModel)]="productoForms.precio" name="precio" required />
+    </div>
+
+    <div class="field">
+      <label for="lote">Lote</label>
+      <select id="lote" [(ngModel)]="productoForms.lote" name="lote" required>
+        <option *ngFor="let lote of lotes" [ngValue]="lote">
+          {{ lote.estilo }} — Talla {{ lote.talla }} (Stock: {{ lote.stock }})
+        </option>
+      </select>
+    </div>
+
+    <button type="submit">{{ editando ? 'Actualizar' : 'Crear' }}</button>
+    <button type="button" *ngIf="editando" (click)="cancelar()">Cancelar</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Precio</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let producto of productos">
+        <td>{{ producto.nombreProducto }}</td>
+        <td>{{ producto.descripcion }}</td>
+        <td>{{ producto.precio }}</td>
+        <td>
+          <button (click)="editar(producto)">Editar</button>
+          <button (click)="eliminar(producto.idproducto)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

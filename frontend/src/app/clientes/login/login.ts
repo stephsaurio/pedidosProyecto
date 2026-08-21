@@ -21,34 +21,38 @@ export class Login {
     private router: Router
   ) {}
 
-  iniciarSesion() {
+ iniciarSesion() {
 
-    const datosLogin = {
-      correoElectronico: this.login.correo,
-      password: this.login.contrasena
-    };
+  const datosLogin = {
+    correoElectronico: this.login.correo,
+    password: this.login.contrasena
+  };
 
-    this.clienteService.login(datosLogin).subscribe({
+  this.clienteService.login(datosLogin).subscribe({
 
-      next: (respuesta: any) => {
+  next: (respuesta: any) => {
 
-        console.log('Inicio de sesión correcto:', respuesta);
+  console.log('Inicio de sesión correcto:', respuesta);
 
-        alert('Inicio de sesión exitoso');
+  localStorage.setItem('usuario', JSON.stringify(respuesta));
 
-        this.router.navigate(['/catalogo']);
+  if (respuesta.rol === 'ADMIN') {
+    this.router.navigate(['/admin/productos']);
+  } else {
+    this.router.navigate(['/catalogo']);
+  }
+},
 
-      },
+    error: (error: any) => {
 
-      error: (error: any) => {
+      console.error('Error al iniciar sesión:', error);
 
-        console.error('Error al iniciar sesión:', error);
+      alert('Correo o contraseña incorrectos');
 
-        alert('Correo o contraseña incorrectos');
+    }
 
-      }
+  });
 
-    });
+}
 
   }
-}

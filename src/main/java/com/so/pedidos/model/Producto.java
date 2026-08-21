@@ -44,13 +44,15 @@ public class Producto {
 private Lote lote;
 
 
-    public Producto(String nombreProducto, String descripcion, double precio, Lote lote){
-        this.nombreProducto = nombreProducto;
-        this.descripcion = descripcion;
-        this.precio = precio;
-        this.lote = lote;
-    }
+   public Producto() {
+}
 
+public Producto(String nombreProducto, String descripcion, Double precio, Lote lote) {
+    this.nombreProducto = nombreProducto;
+    this.descripcion = descripcion;
+    this.precio = precio;
+    this.lote = lote;
+}
     public int getIdproducto() {
         return idproducto;
     }

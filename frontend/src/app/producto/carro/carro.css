@@ -1,0 +1,201 @@
+* {
+  box-sizing: border-box;
+}
+
+.pagina-carrito {
+  min-height: 100vh;
+  background: #fafafa;
+  color: #111;
+}
+
+.navbar {
+  height: 70px;
+  background: white;
+  border-bottom: 1px solid #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ec4899;
+}
+
+.navbar button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.contenido {
+  max-width: 1000px;
+  margin: auto;
+  padding: 50px 30px;
+}
+
+.encabezado {
+  margin-bottom: 35px;
+}
+
+.encabezado p {
+  color: #ec4899;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.encabezado h1 {
+  font-size: 36px;
+  margin: 5px 0;
+}
+
+.producto {
+  background: white;
+  border: 1px solid #eeeeee;
+  border-radius: 14px;
+  padding: 22px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.informacion {
+  flex: 1;
+}
+
+.informacion h2 {
+  margin: 0 0 8px;
+  font-size: 19px;
+}
+
+.informacion p {
+  margin: 0;
+  color: #666;
+}
+
+.precio {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.eliminar {
+  background: transparent;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.eliminar:hover {
+  border-color: #ec4899;
+  color: #ec4899;
+}
+
+.resumen {
+  background: white;
+  border: 1px solid #eeeeee;
+  border-radius: 14px;
+  padding: 25px;
+  margin-top: 30px;
+}
+
+.resumen div {
+  display: flex;
+  justify-content: space-between;
+  font-size: 22px;
+  margin-bottom: 25px;
+}
+
+.pedido {
+  width: 100%;
+  background: #ec4899;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.pedido:hover {
+  background: #db2777;
+}
+
+.vacio {
+  background: white;
+  border: 1px solid #eeeeee;
+  border-radius: 14px;
+  padding: 50px;
+  text-align: center;
+}
+
+.vacio button {
+  background: #ec4899;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 25px;
+  cursor: pointer;
+}
+.cantidad {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cantidad button {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.cantidad button:hover {
+  border-color: #ec4899;
+  color: #ec4899;
+}
+
+.cantidad span {
+  min-width: 20px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.subtotal {
+  min-width: 90px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.acciones {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.vaciar {
+  background: transparent;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 9px 18px;
+  cursor: pointer;
+}
+
+.vaciar:hover {
+  border-color: #ec4899;
+  color: #ec4899;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+}

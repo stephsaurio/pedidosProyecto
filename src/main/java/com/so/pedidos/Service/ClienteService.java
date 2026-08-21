@@ -6,11 +6,13 @@ import org.springframework.stereotype.Service;
 
 import com.so.pedidos.Repository.ClienteRepository;
 import com.so.pedidos.model.Cliente;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Service
 public class ClienteService {
     private final ClienteRepository clienteRepository;
-
+private final BCryptPasswordEncoder passwordEncoder =
+        new BCryptPasswordEncoder();
     public ClienteService(ClienteRepository clienteRepository) {
         this.clienteRepository = clienteRepository;
     }
@@ -19,16 +21,27 @@ public class ClienteService {
         return clienteRepository.findAll();
     }
 
-    public Cliente guardarCliente(Cliente cliente) {
-        return clienteRepository.save(cliente);
+ public Cliente guardarCliente(Cliente cliente) {
+
+    if (cliente.getRol() == null || cliente.getRol().isBlank()) {
+        cliente.setRol("CLIENTE");
     }
 
-  public Cliente iniciarSesion(String correo, String password) {
+    String passwordHash =
+        passwordEncoder.encode(cliente.getPassword());
 
-    Cliente cliente = clienteRepository
-            .findByCorreoElectronicoAndPassword(correo, password);
+    cliente.setPassword(passwordHash);
 
-    if (cliente == null) {
+    return clienteRepository.save(cliente);
+}
+
+ public Cliente iniciarSesion(String correo, String password) {
+
+    Cliente cliente = clienteRepository.findByCorreoElectronico(correo);
+
+    if (cliente == null ||
+        !passwordEncoder.matches(password, cliente.getPassword())) {
+
         throw new RuntimeException("Correo o contraseña incorrectos");
     }
 

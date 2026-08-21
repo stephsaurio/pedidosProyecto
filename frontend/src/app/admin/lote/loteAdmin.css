@@ -66,7 +66,16 @@ form {
   font-size: 12px;
   font-weight: 700;
 }
-
+.cerrar-sesion {
+  margin-left: auto;
+  background: #ec4899;
+  color: white;
+  border: none;
+  border-radius: 22px;
+  padding: 9px 20px;
+  cursor: pointer;
+  font-weight: 600;
+}
 .field input,
 .field select {
   width: 100%;

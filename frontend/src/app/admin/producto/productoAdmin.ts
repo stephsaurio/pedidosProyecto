@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Lote, Producto } from '../admin.model';
 import { ProductoService, LoteService } from '../admin.service';
 
@@ -18,11 +18,12 @@ export class ProductoAdmin implements OnInit {
   productoForms: Partial<Producto> = {};
   editando = false;
 
-  constructor(
-    private productoService: ProductoService,
-    private loteService: LoteService,
-    private cdr: ChangeDetectorRef
-  ) {}
+ constructor(
+  private productoService: ProductoService,
+  private loteService: LoteService,
+  private cdr: ChangeDetectorRef,
+  private router: Router
+) {}
 
   ngOnInit(): void {
     this.cargarProductos();
@@ -74,4 +75,7 @@ export class ProductoAdmin implements OnInit {
     this.editando = false;
     this.cdr.detectChanges();
   }
+ cerrarSesion(): void {
+  this.router.navigate(['/login']);
+}
 }

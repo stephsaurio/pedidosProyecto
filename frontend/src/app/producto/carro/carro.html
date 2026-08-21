@@ -1,0 +1,125 @@
+<div class="pagina-carrito">
+
+  <header class="navbar">
+
+    <div class="logo">
+      PEDIDOS
+    </div>
+
+    <button (click)="volverCatalogo()">
+      Volver al catálogo
+    </button>
+
+  </header>
+
+  <main class="contenido">
+
+    <div class="encabezado">
+      <p>MI COMPRA</p>
+      <h1>Carrito</h1>
+    </div>
+
+
+    <div *ngIf="carrito.length === 0" class="vacio">
+
+      <h2>Tu carrito está vacío</h2>
+
+      <button (click)="volverCatalogo()">
+        Ver productos
+      </button>
+
+    </div>
+
+
+    <div *ngIf="carrito.length > 0">
+
+      <div
+        class="producto"
+        *ngFor="let producto of carrito; let i = index">
+
+        <div class="informacion">
+
+          <h2>{{ producto.nombreProducto }}</h2>
+
+          <p>{{ producto.descripcion }}</p>
+
+          <span>
+            Precio: Q{{ producto.precio }}
+          </span>
+
+        </div>
+
+
+        <div class="cantidad">
+
+          <button (click)="disminuirCantidad(i)">
+            −
+          </button>
+
+          <span>{{ producto.cantidad }}</span>
+
+          <button (click)="aumentarCantidad(i)">
+            +
+          </button>
+
+        </div>
+
+
+        <div class="subtotal">
+
+          Q{{ calcularSubtotal(producto) }}
+
+        </div>
+
+
+        <button
+          class="eliminar"
+          (click)="eliminar(i)">
+
+          Eliminar
+
+        </button>
+
+      </div>
+
+
+      <div class="acciones">
+
+        <button
+          class="vaciar"
+          (click)="vaciarCarrito()">
+
+          Vaciar carrito
+
+        </button>
+
+      </div>
+
+
+      <div class="resumen">
+
+        <div class="total">
+
+          <span>Total</span>
+
+          <strong>
+            Q{{ calcularTotal() }}
+          </strong>
+
+        </div>
+
+        <button
+          class="pedido"
+          (click)="realizarPedido()">
+
+          REALIZAR PEDIDO
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </main>
+
+</div>

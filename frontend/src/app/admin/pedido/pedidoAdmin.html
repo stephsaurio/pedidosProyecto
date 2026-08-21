@@ -1,0 +1,111 @@
+<div class="admin-page">
+
+  <nav class="admin-nav">
+
+    <a
+      routerLink="/admin/productos"
+      routerLinkActive="active">
+      Productos
+    </a>
+
+    <a
+      routerLink="/admin/lotes"
+      routerLinkActive="active">
+      Lotes
+    </a>
+
+    <a
+      routerLink="/admin/pedidos"
+      routerLinkActive="active">
+      Pedidos
+    </a>
+
+    <button
+      type="button"
+      class="cerrar-sesion"
+      (click)="cerrarSesion()">
+      Cerrar sesión
+    </button>
+
+  </nav>
+
+  <main class="contenido">
+
+    <p class="etiqueta">ADMINISTRACIÓN</p>
+
+    <h1>Gestión de pedidos</h1>
+
+    <div
+      class="sin-pedidos"
+      *ngIf="pedidos.length === 0">
+
+      No hay pedidos registrados.
+
+    </div>
+
+    <div
+      class="pedido"
+      *ngFor="let pedido of pedidos">
+
+      <div class="datos">
+
+        <h2>
+          Pedido #{{ pedido.idpedido }}
+        </h2>
+
+        <p>
+          Cliente:
+          {{ pedido.cliente?.nombreCompleto }}
+        </p>
+
+        <p>
+          Fecha: {{ pedido.fecha }}
+        </p>
+
+      </div>
+
+      <div class="total">
+        Q{{ pedido.total }}
+      </div>
+
+      <div class="estado">
+
+        <label>Estado</label>
+
+        <select [(ngModel)]="pedido.estado">
+
+          <option value="PENDIENTE">
+            Pendiente
+          </option>
+
+          <option value="PROCESANDO">
+            Procesando
+          </option>
+
+          <option value="ENVIADO">
+            Enviado
+          </option>
+
+          <option value="ENTREGADO">
+            Entregado
+          </option>
+
+          <option value="CANCELADO">
+            Cancelado
+          </option>
+
+        </select>
+
+      </div>
+
+      <button
+        class="guardar"
+        (click)="actualizarEstado(pedido)">
+        Guardar
+      </button>
+
+    </div>
+
+  </main>
+
+</div>

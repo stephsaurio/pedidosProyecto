@@ -1,8 +1,32 @@
 <div class="admin-page">
   <nav class="admin-nav">
-  <a routerLink="/admin/productos" routerLinkActive="active">Productos</a>
-  <a routerLink="/admin/lotes" routerLinkActive="active">Lotes</a>
-  </nav>
+
+  <a
+    routerLink="/admin/productos"
+    routerLinkActive="active">
+    Productos
+  </a>
+
+  <a
+    routerLink="/admin/lotes"
+    routerLinkActive="active">
+    Lotes
+  </a>
+
+  <a
+    routerLink="/admin/pedidos"
+    routerLinkActive="active">
+    Pedidos
+  </a>
+
+  <button
+    type="button"
+    class="cerrar-sesion"
+    (click)="cerrarSesion()">
+    Cerrar sesión
+  </button>
+
+</nav>
 
   <h1>Gestión de productos</h1>
 

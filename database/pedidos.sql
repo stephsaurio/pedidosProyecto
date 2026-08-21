@@ -8,6 +8,7 @@ USE `mydb`;
 
 SET FOREIGN_KEY_CHECKS = 0;
 
+
 -- -----------------------------------------------------
 -- Table structure for table `cliente`
 -- -----------------------------------------------------
@@ -16,7 +17,7 @@ DROP TABLE IF EXISTS `cliente`;
 
 CREATE TABLE `cliente` (
   `idCliente` int NOT NULL AUTO_INCREMENT,
-  `Nombre_usuario` varchar(45) NOT NULL,
+  `Nombre_usuario` varchar(255) NOT NULL,
   `Password` varchar(45) NOT NULL,
   `NombreCompleto` varchar(50) NOT NULL,
   `Telefono` int NOT NULL,
@@ -108,8 +109,8 @@ CREATE TABLE `detalle_pedido` (
   `Pedido_idPedido` int NOT NULL,
   `Producto_idProducto` int NOT NULL,
 
-  PRIMARY KEY (`idDetalle_factura`),
-  UNIQUE KEY `idDetalle_factura_UNIQUE` (`idDetalle_factura`),
+  PRIMARY KEY (`idDetalle`),
+  UNIQUE KEY `idDetalle_UNIQUE` (`idDetalle`),
   KEY `fk_Detalle_pedido_Pedido1_idx` (`Pedido_idPedido`),
   KEY `fk_Detalle_pedido_Producto1_idx` (`Producto_idProducto`),
 
@@ -121,7 +122,6 @@ CREATE TABLE `detalle_pedido` (
     FOREIGN KEY (`Producto_idProducto`)
     REFERENCES `producto` (`idProducto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
 
 -- -----------------------------------------------------
 -- Table structure for table `factura`

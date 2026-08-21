@@ -2,14 +2,16 @@ import {
   Component,
   OnInit,
   OnDestroy,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  Inject,
+  PLATFORM_ID
 } from '@angular/core';
 
-import { Router, NavigationStart, NavigationEnd } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 
+import { Router } from '@angular/router';
 import { ProductoService } from '../producto.service';
 
-import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
@@ -18,8 +20,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   standalone: true,
   imports: [
     MatToolbarModule,
-    MatButtonModule,
-    MatIconModule
+    MatButtonModule
   ],
   templateUrl: './catalogo.html',
   styleUrl: './catalogo.css'
@@ -27,77 +28,98 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 export class Catalogo implements OnInit, OnDestroy {
 
   productos: any[] = [];
+  carrito: any[] = [];
 
-  constructor(
-    private productoService: ProductoService,
-    private cd: ChangeDetectorRef,
-    private router: Router
-  ) {}
+constructor(
+  private productoService: ProductoService,
+  private cd: ChangeDetectorRef,
+  private router: Router,
+  @Inject(PLATFORM_ID) private platformId: Object
+) {}
 
   ngOnInit(): void {
-
-    console.log('🟢 CATALOGO INICIADO');
-    console.log('📍 RUTA ACTUAL:', this.router.url);
-
-    this.router.events.subscribe(event => {
-
-      if (event instanceof NavigationStart) {
-        console.log('🚨 NAVEGACIÓN INICIADA:', event.url);
-      }
-
-      if (event instanceof NavigationEnd) {
-        console.log('✅ NAVEGACIÓN TERMINADA:', event.urlAfterRedirects);
-      }
-
-    });
-
     this.cargarProductos();
+    this.cargarCarrito();
+  }
 
+  get cantidadCarrito(): number {
+    return this.carrito.length;
   }
 
   cargarProductos(): void {
 
-    console.log('🔵 PIDIENDO PRODUCTOS...');
-
     this.productoService.obtenerProductos().subscribe({
 
       next: (respuesta: any[]) => {
-
-        console.log('📦 RESPUESTA:', respuesta);
-
-        console.log(
-          '📊 CANTIDAD RECIBIDA:',
-          respuesta.length
-        );
-
-        this.productos = [...respuesta];
-
-        console.log(
-          '📊 CANTIDAD EN productos:',
-          this.productos.length
-        );
-
+        this.productos = respuesta;
         this.cd.detectChanges();
-
       },
 
       error: (error: any) => {
-
-        console.error(
-          '🔴 ERROR AL CARGAR PRODUCTOS:',
-          error
-        );
-
+        console.error('Error al cargar productos:', error);
       }
 
     });
+  }
+
+ agregarAlCarrito(producto: any): void {
+
+  if (!isPlatformBrowser(this.platformId)) {
+    return;
+  }
+
+  const existente = this.carrito.find(
+    item => item.idproducto === producto.idproducto
+  );
+
+  if (existente) {
+    existente.cantidad++;
+  } else {
+    this.carrito.push({
+      ...producto,
+      cantidad: 1
+    });
+  }
+
+  localStorage.setItem(
+    'carrito',
+    JSON.stringify(this.carrito)
+  );
+
+  alert(producto.nombreProducto + ' agregado al carrito');
+}
+
+ cargarCarrito(): void {
+
+  if (isPlatformBrowser(this.platformId)) {
+
+    const carritoGuardado = localStorage.getItem('carrito');
+
+    if (carritoGuardado) {
+      this.carrito = JSON.parse(carritoGuardado);
+    }
 
   }
+}
+
+ irCarrito(): void {
+  this.router.navigate(['/carrito']);
+}
+
+  irMisPedidos(): void {
+    this.router.navigate(['/mis-pedidos']);
+  }
+
+ cerrarSesion(): void {
+
+  if (isPlatformBrowser(this.platformId)) {
+    localStorage.removeItem('carrito');
+    localStorage.removeItem('usuario');
+  }
+
+  this.router.navigate(['/login']);
+}
 
   ngOnDestroy(): void {
-
-    console.log('🚨🚨 CATALOGO FUE DESTRUIDO');
-
   }
-
 }

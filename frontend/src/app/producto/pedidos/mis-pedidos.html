@@ -1,0 +1,60 @@
+<div class="pagina">
+
+  <header class="navbar">
+
+    <div class="logo">
+      PEDIDOS
+    </div>
+
+    <button (click)="volverCatalogo()">
+      Volver al catálogo
+    </button>
+
+  </header>
+
+  <main class="contenido">
+
+    <div class="encabezado">
+      <p>MI CUENTA</p>
+      <h1>Mis pedidos</h1>
+    </div>
+
+    <div
+      class="vacio"
+      *ngIf="pedidos.length === 0">
+
+      <h2>No tienes pedidos</h2>
+
+      <button (click)="volverCatalogo()">
+        Ver productos
+      </button>
+
+    </div>
+
+    <div
+      class="pedido"
+      *ngFor="let pedido of pedidos">
+
+      <div>
+        <span class="numero">
+          Pedido #{{ pedido.idpedido }}
+        </span>
+
+        <p>
+          {{ pedido.fecha }}
+        </p>
+      </div>
+
+      <div class="estado">
+        {{ pedido.estado }}
+      </div>
+
+      <div class="total">
+        Q{{ pedido.total }}
+      </div>
+
+    </div>
+
+  </main>
+
+</div>

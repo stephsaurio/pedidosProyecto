@@ -40,6 +40,8 @@ public class Cliente {
 
     @Column(name = "NIT")
     private String nit;
+    @Column(name = "Rol")
+private String rol;
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Pedido> pedido;
@@ -55,6 +57,8 @@ public class Cliente {
         this.telefono = telefono;
         this.correoElectronico = correoElectronico;
         this.nit = nit;
+        
+        
     }
 
     public Integer getIdCliente() {
@@ -120,4 +124,11 @@ public class Cliente {
     public void setNit(String nit) {
         this.nit = nit;
     }
+    public String getRol() {
+    return rol;
+}
+
+public void setRol(String rol) {
+    this.rol = rol;
+}
 }

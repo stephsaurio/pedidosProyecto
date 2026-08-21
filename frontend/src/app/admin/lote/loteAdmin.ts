@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Lote } from '../admin.model';
 import { LoteService } from '../admin.service';
 
@@ -17,7 +17,11 @@ export class LoteAdmin implements OnInit {
   loteForms: Partial<Lote> = {};
   editando = false;
 
-  constructor(private loteService: LoteService, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private loteService: LoteService,
+    private cdr: ChangeDetectorRef,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
     this.cargarLotes();
@@ -64,5 +68,9 @@ export class LoteAdmin implements OnInit {
     this.loteForms = {};
     this.editando = false;
     this.cdr.detectChanges();
+  }
+  cerrarSesion(): void {
+    localStorage.removeItem('usuario');
+    this.router.navigate(['/login']);
   }
 }

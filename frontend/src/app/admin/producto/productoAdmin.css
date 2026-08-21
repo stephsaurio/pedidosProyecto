@@ -28,7 +28,23 @@ h1 {
   padding-bottom: 15px;
   border-bottom: 1px solid #e8e8e8;
 }
+.cerrar-sesion {
+  margin-left: auto;
+  background: #ec4899;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 9px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
 
+.cerrar-sesion:hover {
+  background: #db2777;
+  transform: translateY(-1px);
+}
 .admin-nav a {
   color: #666666;
   font-size: 12px;

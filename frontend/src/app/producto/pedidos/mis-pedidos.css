@@ -1,0 +1,112 @@
+* {
+  box-sizing: border-box;
+}
+
+.pagina {
+  min-height: 100vh;
+  background: #fafafa;
+  color: #111;
+}
+
+.navbar {
+  height: 70px;
+  background: white;
+  border-bottom: 1px solid #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+}
+
+.logo {
+  color: #ec4899;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.navbar button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.contenido {
+  max-width: 900px;
+  margin: auto;
+  padding: 50px 30px;
+}
+
+.encabezado {
+  margin-bottom: 35px;
+}
+
+.encabezado p {
+  color: #ec4899;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.encabezado h1 {
+  margin: 5px 0;
+  font-size: 36px;
+}
+
+.pedido {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 14px;
+  padding: 22px;
+  margin-bottom: 15px;
+}
+
+.pedido > div:first-child {
+  flex: 1;
+}
+
+.numero {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.pedido p {
+  color: #777;
+  margin: 6px 0 0;
+}
+
+.estado {
+  background: #fce7f3;
+  color: #be185d;
+  border-radius: 20px;
+  padding: 7px 14px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.total {
+  min-width: 100px;
+  text-align: right;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.vacio {
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 14px;
+  padding: 50px;
+  text-align: center;
+}
+
+.vacio button {
+  background: #ec4899;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 11px 24px;
+  cursor: pointer;
+}

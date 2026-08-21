@@ -1,47 +1,40 @@
-
 <div class="pagina">
+  <mat-toolbar class="navbar">
+    <div class="logo">
+      <span>PEDIDOS</span>
+    </div>
 
-  <mat-toolbar>
-
-      <button matMiniFab disabled aria-label="Example icon button with a home icon">
-        <mat-icon>home</mat-icon>
-      </button>
-
-    <span>Catálogo De Productos</span>
+    <span class="titulo">Catálogo</span>
 
     <span class="example-spacer"></span>
 
-    <a mat-button>Carrito</a>
-    <a mat-button>Bandeja de Entrada</a>
+    <button mat-button (click)="irCarrito()">Carrito 🛒 ({{ cantidadCarrito }})</button>
 
+    <button mat-button (click)="irMisPedidos()">Mis pedidos</button>
+
+    <button mat-raised-button class="btn-salir" (click)="cerrarSesion()">Cerrar sesión</button>
   </mat-toolbar>
 
-
-
-  <div class="catalogo">
-
-    @for (producto of productos; track producto.idproducto) {
-
-      <div class="producto">
-
-        <h2>{{ producto.nombreProducto }}</h2>
-
-        <p>{{ producto.descripcion }}</p>
-
-        <p>Precio: Q.{{ producto.precio }}</p>
-
-        <button
-          matIconButton
-          class="favorite-icon"
-          aria-label="Agregar a favoritos"
-        >
-          <mat-icon>favorite</mat-icon>
-        </button>
-
-      </div>
-
-    }
-
+  <div class="encabezado">
+    <p>NUEVA COLECCIÓN</p>
+    <h1>Encuentra tus productos favoritos</h1>
   </div>
 
+  <div class="catalogo">
+    @for (producto of productos; track producto.idproducto) {
+      <div class="producto">
+        <h2>{{ producto.nombreProducto }}</h2>
+
+        <p class="descripcion">
+          {{ producto.descripcion }}
+        </p>
+
+        <div class="precio">Q{{ producto.precio }}</div>
+
+        <button mat-raised-button class="btn-agregar" (click)="agregarAlCarrito(producto)">
+          Agregar al carrito
+        </button>
+      </div>
+    }
+  </div>
 </div>

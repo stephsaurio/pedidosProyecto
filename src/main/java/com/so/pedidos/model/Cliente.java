@@ -26,7 +26,7 @@ public class Cliente {
     @Column(name = "Nombre_usuario")
     private String nombreUsuario;
 
-    @Column(name = "Password")
+    @Column(name = "Password", length = 255)
     private String password;
 
     @Column(name = "NombreCompleto")

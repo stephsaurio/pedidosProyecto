@@ -7,11 +7,11 @@ import { Observable } from 'rxjs';
 })
 export class ProductoService {
 
-  private apiUrl = 'http://localhost:8080/producto/listproductos';
+  private apiUrl = '/api/producto';
 
   constructor(private http: HttpClient) {}
 
   obtenerProductos(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+    return this.http.get<any[]>('/api/producto/listproductos');
   }
 }

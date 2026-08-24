@@ -8,17 +8,18 @@ USE `mydb`;
 
 SET FOREIGN_KEY_CHECKS = 0;
 
+SELECT * from cliente;
 
 -- -----------------------------------------------------
 -- Table structure for table `cliente`
 -- -----------------------------------------------------
 
 DROP TABLE IF EXISTS `cliente`;
-
+ALTER TABLE cliente MODIFY Password VARCHAR(255);
 CREATE TABLE `cliente` (
   `idCliente` int NOT NULL AUTO_INCREMENT,
   `Nombre_usuario` varchar(255) NOT NULL,
-  `Password` varchar(45) NOT NULL,
+  `Password` varchar(255) NOT NULL,
   `NombreCompleto` varchar(50) NOT NULL,
   `Telefono` int NOT NULL,
   `Correo_electronico` varchar(45) NOT NULL,
@@ -151,25 +152,6 @@ CREATE TABLE `factura` (
 -- Administrador inicial
 -- -----------------------------------------------------
 
-INSERT INTO `cliente`
-(
-  `Nombre_usuario`,
-  `Password`,
-  `NombreCompleto`,
-  `Telefono`,
-  `Correo_electronico`,
-  `NIT`,
-  `Rol`
-)
-VALUES
-(
-  'admin',
-  'admin123',
-  'Administrador',
-  12345678,
-  'admin@grupo.os',
-  'CF',
-  'ADMIN'
-);
+
 
 SET FOREIGN_KEY_CHECKS = 1;

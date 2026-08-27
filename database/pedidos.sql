@@ -146,6 +146,31 @@ CREATE TABLE `factura` (
     REFERENCES `pedido` (`idPedido`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+-- =====================================================
+-- TABLA: AuditLog
+-- =====================================================
+
+DROP TABLE IF EXISTS `AuditLog`;
+
+CREATE TABLE `AuditLog` (
+  `idAuditLog` int NOT NULL AUTO_INCREMENT,
+  `idCliente` int NOT NULL,
+  `Tabla_afectada` varchar(50) NOT NULL,
+  `Id_registro` int NOT NULL,
+  `Fecha_hora` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `IP_address` varchar(45) DEFAULT NULL,
+  `Valores_anteriores` JSON DEFAULT NULL,
+  `Valores_nuevos` JSON DEFAULT NULL,
+
+  PRIMARY KEY (`idAuditLog`),
+
+  KEY `fk_AuditLog_Cliente_idx` (`idCliente`),
+
+  CONSTRAINT `fk_AuditLog_Cliente`
+    FOREIGN KEY (`idCliente`)
+    REFERENCES `cliente` (`idCliente`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
 
 -- -----------------------------------------------------
 -- Administrador inicial

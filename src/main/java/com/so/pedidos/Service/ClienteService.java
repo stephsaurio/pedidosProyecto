@@ -22,18 +22,22 @@ public class ClienteService {
     }
 
     public Cliente guardarCliente(Cliente cliente) {
-        Cliente guardado = clienteRepository.save(cliente);
+        if (cliente.getRol() == null || cliente.getRol().isBlank()) {
+        cliente.setRol("CLIENTE");
+    }
 
-        auditLogService.registrar(
-            guardado,
-            "cliente",
-            guardado.getIdCliente(),
-            "N/A",
-            null,
-            aJson(guardado)
-        );
+    Cliente guardado = clienteRepository.save(cliente);
 
-        return guardado;
+    auditLogService.registrar(
+        guardado,
+        "cliente",
+        guardado.getIdCliente(),
+        "N/A",
+        null,
+        aJson(guardado)
+    );
+
+    return guardado;
 
     }
 
@@ -72,12 +76,12 @@ public class ClienteService {
 
     private String aJson(Cliente cliente) {
         return String.format(
-            "{\"idCliente\":%d,\"nombreUsuario\":\"%s\",\"nombreCompleto\":\"%s\",\"correoElectronico\":\"%s\",\"rol\":\"%s\"}",
-            cliente.getIdCliente(),
-            cliente.getNombreUsuario(),
-            cliente.getNombreCompleto(),
-            cliente.getCorreoElectronico()
-            
-        );
+        "{\"idCliente\":%d,\"nombreUsuario\":\"%s\",\"nombreCompleto\":\"%s\",\"correoElectronico\":\"%s\",\"rol\":\"%s\"}",
+        cliente.getIdCliente(),
+        cliente.getNombreUsuario(),
+        cliente.getNombreCompleto(),
+        cliente.getCorreoElectronico(),
+        cliente.getRol()
+    );
     }
 }

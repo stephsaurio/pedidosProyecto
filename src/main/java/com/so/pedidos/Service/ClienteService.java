@@ -10,9 +10,11 @@ import com.so.pedidos.model.Cliente;
 @Service
 public class ClienteService {
     private final ClienteRepository clienteRepository;
+    private final AuditLogService auditLogService;
 
-    public ClienteService(ClienteRepository clienteRepository) {
+    public ClienteService(ClienteRepository clienteRepository, AuditLogService auditLogService) {
         this.clienteRepository = clienteRepository;
+        this.auditLogService = auditLogService;
     }
 
     public List<Cliente> listarClientes() {
@@ -20,7 +22,19 @@ public class ClienteService {
     }
 
     public Cliente guardarCliente(Cliente cliente) {
-        return clienteRepository.save(cliente);
+        Cliente guardado = clienteRepository.save(cliente);
+
+        auditLogService.registrar(
+            guardado,
+            "cliente",
+            guardado.getIdCliente(),
+            "N/A",
+            null,
+            aJson(guardado)
+        );
+
+        return guardado;
+
     }
 
   public Cliente iniciarSesion(String correo, String password) {
@@ -40,6 +54,30 @@ public class ClienteService {
     }
 
     public void eliminarCliente(Integer id) {
+        Cliente existente = clienteRepository.findById(id).orElse(null);
+
         clienteRepository.deleteById(id);
+
+        if (existente != null) {
+            auditLogService.registrar(
+                existente,
+                "cliente",
+                id,
+                "N/A",
+                aJson(existente),
+                null
+            );
+        }
+    }
+
+    private String aJson(Cliente cliente) {
+        return String.format(
+            "{\"idCliente\":%d,\"nombreUsuario\":\"%s\",\"nombreCompleto\":\"%s\",\"correoElectronico\":\"%s\",\"rol\":\"%s\"}",
+            cliente.getIdCliente(),
+            cliente.getNombreUsuario(),
+            cliente.getNombreCompleto(),
+            cliente.getCorreoElectronico()
+            
+        );
     }
 }

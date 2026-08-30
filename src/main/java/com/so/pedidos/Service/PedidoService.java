@@ -12,9 +12,11 @@ import com.so.pedidos.model.Pedido;
 public class PedidoService {
 
     private final PedidoRepository pedidoRepository;
+    private final AuditLogService auditLogService;
 
-    public PedidoService(PedidoRepository pedidoRepository) {
+    public PedidoService(PedidoRepository pedidoRepository, AuditLogService auditLogService) {
         this.pedidoRepository = pedidoRepository;
+        this.auditLogService = auditLogService;
     }
 
     public List<Pedido> getAllPedidos() {
@@ -26,11 +28,46 @@ public class PedidoService {
     }
 
     public Pedido save(Pedido par_pedido) {
-        return pedidoRepository.save(par_pedido);
+        Pedido guardado = pedidoRepository.save(par_pedido);
+
+        if (guardado.getCliente() != null) {
+            auditLogService.registrar(
+                guardado.getCliente(),
+                "pedido",
+                guardado.getIdpedido(),
+                "N/A",
+                null,
+                aJson(guardado)
+            );
+        }
+
+        return guardado;
     }
 
     public void delete(Pedido par_pedido) {
         pedidoRepository.delete(par_pedido);
+
+        if (par_pedido.getCliente() != null) {
+            auditLogService.registrar(
+                par_pedido.getCliente(),
+                "pedido",
+                par_pedido.getIdpedido(),
+                "N/A",
+                aJson(par_pedido),
+                null
+            );
+        }
     }
+
+    private String aJson(Pedido pedido) {
+        return String.format(
+            "{\"idpedido\":%d,\"fecha\":\"%s\",\"estado\":\"%s\",\"total\":%.2f}",
+            pedido.getIdpedido(),
+            pedido.getFecha(),
+            pedido.getEstado(),
+            pedido.getTotal()
+        );
+    }
+
 
 }
